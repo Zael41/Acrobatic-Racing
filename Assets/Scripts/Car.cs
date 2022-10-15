@@ -4,6 +4,8 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System;
+using TMPro;
+using JetBrains.Annotations;
 
 public class Car : MonoBehaviourPunCallbacks
 {
@@ -25,23 +27,23 @@ public class Car : MonoBehaviourPunCallbacks
     public float maxSteer = 20f;
     private Rigidbody rb;
 
+    private int lapCount;
+    public TMP_Text lapText;
+    public bool[] checkpoints;
+
     private void Start()
     {
-        //rb = GetComponent<Rigidbody>();
         rb = GetComponentInChildren<Rigidbody>();
         rb.centerOfMass = centerOfMass.localPosition;
         Cursor.lockState = CursorLockMode.Locked;
-        //PV = GetComponentInParent<PhotonView>();
         PV = GetComponent<PhotonView>();
-        //if (!PV.IsMine) GetComponent<Car>().enabled = false;
+        lapCount = 0;
+        checkpoints = new bool[9]; 
+        lapText = GameObject.Find("LapText").GetComponent<TMP_Text>();
     }
 
     private void FixedUpdate()
     {
-        /*wheelColliderLeftBack.motorTorque = Input.GetAxis("Vertical") * motorTorque;
-        wheelColliderRightBack.motorTorque = Input.GetAxis("Vertical") * motorTorque;
-        wheelColliderLeftFront.steerAngle = Input.GetAxis("Horizontal") * maxSteer;
-        wheelColliderRightFront.steerAngle = Input.GetAxis("Horizontal") * maxSteer;*/
         MoveCar();
     }
 
@@ -58,24 +60,6 @@ public class Car : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        /*Vector3 position = Vector3.zero;
-        Quaternion rotation = Quaternion.identity;
-
-        wheelColliderLeftFront.GetWorldPose(out position, out rotation);
-        wheelLeftFront.position = position;
-        wheelLeftFront.rotation = rotation;
-
-        wheelColliderRightFront.GetWorldPose(out position, out rotation);
-        wheelRightFront.position = position;
-        wheelRightFront.rotation = rotation;
-
-        wheelColliderLeftBack.GetWorldPose(out position, out rotation);
-        wheelLeftBack.position = position;
-        wheelLeftBack.rotation = rotation;
-
-        wheelColliderRightBack.GetWorldPose(out position, out rotation);
-        wheelRightBack.position = position;
-        wheelRightBack.rotation = rotation;*/
         GetWheelPosition();
     }
 
@@ -101,6 +85,23 @@ public class Car : MonoBehaviourPunCallbacks
             wheelColliderRightBack.GetWorldPose(out position, out rotation);
             wheelRightBack.position = position;
             wheelRightBack.rotation = rotation;
+        }
+    }
+
+    public void FinishLap()
+    {
+        if (PV.IsMine)
+        {
+            foreach (bool cp in checkpoints)
+            {
+                if (cp == false)
+                {
+                    return;
+                }
+            }
+            lapCount += 1;
+            lapText.text = "LAP: " + lapCount + " / 3";
+            checkpoints = new bool[9]; 
         }
     }
 }

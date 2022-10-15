@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 4729737493962568504}
   m_Layer: 0
   m_Name: Object016
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 4729737494273121673}
   m_Layer: 7
   m_Name: WheelColliderLeftBack
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 7211640243151335543}
   m_Layer: 6
   m_Name: police_car
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 4729737494413145509}
   m_Layer: 7
   m_Name: WheelColliderRightFront
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -752,7 +752,7 @@ GameObject:
   - component: {fileID: 4729737494424688801}
   m_Layer: 0
   m_Name: WheelColliders
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -789,7 +789,7 @@ GameObject:
   - component: {fileID: 4729737494816884194}
   m_Layer: 0
   m_Name: Object005
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -872,7 +872,7 @@ GameObject:
   - component: {fileID: 4729737494973223797}
   m_Layer: 0
   m_Name: Object015
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -955,7 +955,7 @@ GameObject:
   - component: {fileID: 4729737495172575104}
   m_Layer: 0
   m_Name: Object017
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1035,13 +1035,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4729737495216228167}
   - component: {fileID: 4729737495216228164}
-  - component: {fileID: 4729737495216228165}
   - component: {fileID: 8944403364047230109}
   - component: {fileID: 5174672091888622931}
   - component: {fileID: 6091362581222941943}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1088,18 +1087,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &4729737495216228165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4729737495216228186}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26d113c4a2305a34b923ebfcb71303da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8944403364047230109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,6 +1143,8 @@ MonoBehaviour:
   wheelRightBack: {fileID: 4729737493962568505}
   motorTorque: 100
   maxSteer: 20
+  lapText: {fileID: 0}
+  checkpoints: 
 --- !u!114 &6091362581222941943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1179,7 +1168,7 @@ GameObject:
   - component: {fileID: 4729737495389277111}
   m_Layer: 0
   m_Name: CameraFocus
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1211,7 +1200,7 @@ GameObject:
   - component: {fileID: 4729737495468427552}
   m_Layer: 7
   m_Name: WheelColliderLeftFront
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1270,12 +1259,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4729737495499727139}
-  - component: {fileID: 4729737495499727149}
   - component: {fileID: 6666959818334115616}
   - component: {fileID: 7143344680262263560}
   m_Layer: 0
   m_Name: Taxi
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1303,29 +1291,6 @@ Transform:
   m_Father: {fileID: 4729737495216228167}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &4729737495499727149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4729737495499727136}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d20c23a48f3e6d43a2071202da216de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  centerOfMass: {fileID: 4729737495791272835}
-  wheelColliderLeftFront: {fileID: 4729737495468427552}
-  wheelColliderRightFront: {fileID: 4729737494413145509}
-  wheelColliderLeftBack: {fileID: 4729737494273121673}
-  wheelColliderRightBack: {fileID: 4729737495686652172}
-  wheelLeftFront: {fileID: 4729737494816884195}
-  wheelRightFront: {fileID: 4729737494973223754}
-  wheelLeftBack: {fileID: 4729737495172575105}
-  wheelRightBack: {fileID: 4729737493962568505}
-  motorTorque: 100
-  maxSteer: 20
 --- !u!54 &6666959818334115616
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1370,7 +1335,7 @@ GameObject:
   - component: {fileID: 4729737495686652172}
   m_Layer: 7
   m_Name: WheelColliderRightBack
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1431,7 +1396,7 @@ GameObject:
   - component: {fileID: 4729737495791272835}
   m_Layer: 0
   m_Name: CenterOfMass
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1848,7 +1813,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9205975586733714799}
-  m_LocalRotation: {x: 0.06883049, y: 0.70374876, z: -0.06883048, w: 0.7037488}
+  m_LocalRotation: {x: 0.06883049, y: 0.70374876, z: -0.06883049, w: 0.7037488}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

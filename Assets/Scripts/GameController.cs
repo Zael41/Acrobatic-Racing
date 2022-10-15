@@ -4,15 +4,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviourPunCallbacks
 {
+    public static GameController instance;
+
     Player[] jugadores;
 
     public int jugador;
 
     public GameObject jugadorGO;
     public GameObject cameraGO;
+
+    private int lapCount;
+    public TMP_Text lapText;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            QualitySettings.vSyncCount = 1;
+            lapCount = 0;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void Start()
     {
@@ -26,13 +48,6 @@ public class GameController : MonoBehaviourPunCallbacks
 
         Vector3 spawnPoint = new Vector3(25f, 20f, 0f);
         jugadorGO = PhotonNetwork.Instantiate("Player2", spawnPoint, Quaternion.identity, 0);
-        /*cameraGO = PhotonNetwork.Instantiate("CameraPrefab", spawnPoint, Quaternion.identity, 0);
-        GameObject taxi = jugadorGO.transform.Find("Taxi").gameObject;
-        Transform focusPoint = taxi.transform.Find("CameraFocus");
-        CinemachineFreeLook CMFL = cameraGO.GetComponentInChildren<CinemachineFreeLook>();
-
-        CMFL.Follow = focusPoint;
-        CMFL.LookAt = focusPoint;*/
     }
 
     /*public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -58,4 +73,10 @@ public class GameController : MonoBehaviourPunCallbacks
 
         jugadorGO = PhotonNetwork.Instantiate("Player1", transform.position, Quaternion.identity, 0);
     }*/
+
+    public void FinishLap()
+    {
+        lapCount += 1;
+        lapText.text = "LAP: " + lapCount + " / 3";
+    }
 }

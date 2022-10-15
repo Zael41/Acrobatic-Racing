@@ -19,6 +19,9 @@ public class NetworkPlayer : MonoBehaviour
 
         CMFL.Follow = focusPoint;
         CMFL.LookAt = focusPoint;
+
+        SpeedMeter speedMeter = GameObject.Find("Speedometer").GetComponent<SpeedMeter>();
+        if (PV.IsMine) speedMeter.target = taxi.GetComponent<Rigidbody>();
         if (!PV.IsMine)
         {
             camera.SetActive(false);
@@ -33,11 +36,5 @@ public class NetworkPlayer : MonoBehaviour
                 script.enabled = false;
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
