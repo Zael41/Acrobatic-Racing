@@ -17,7 +17,8 @@ public class ConnectionTest : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Conectando al server maestro");
+        PhotonNetwork.AutomaticallySyncScene = true;
+        Debug.Log("Conectado al server maestro");
     }
 
     public override void OnDisconnected(DisconnectCause cause)

@@ -36,4 +36,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         CrearRoom();
     }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("DrivingTest");
+    }
 }
