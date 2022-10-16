@@ -21,6 +21,9 @@ public class GameController : MonoBehaviourPunCallbacks
     private int lapCount;
     public TMP_Text lapText;
 
+    public Transform[] spawnPositions;
+    public int nextPosition;
+
     void Awake()
     {
         if (instance == null)
@@ -29,6 +32,7 @@ public class GameController : MonoBehaviourPunCallbacks
             DontDestroyOnLoad(gameObject);
             QualitySettings.vSyncCount = 1;
             lapCount = 0;
+            //nextPosition = 0;
         }
         else
         {
@@ -47,7 +51,15 @@ public class GameController : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = jugador.ToString();
 
         Vector3 spawnPoint = new Vector3(25f, 20f, 0f);
-        jugadorGO = PhotonNetwork.Instantiate("Player2", spawnPoint, Quaternion.identity, 0);
+        nextPosition = jugador - 1;
+        Debug.Log(nextPosition);
+        jugadorGO = PhotonNetwork.Instantiate("Player2", spawnPositions[nextPosition].position, Quaternion.identity, 0);
+        nextPosition++;
+        if (jugador == 2)
+        {
+            PhotonView timerPV = GameObject.Find("Timer").GetComponent<PhotonView>();
+            timerPV.RPC("BeginTimer", RpcTarget.All);
+        }
     }
 
     /*public override void OnPlayerEnteredRoom(Player newPlayer)
