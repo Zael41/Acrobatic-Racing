@@ -555,13 +555,13 @@ WheelCollider:
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.15
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 0.05
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
@@ -1145,6 +1145,11 @@ MonoBehaviour:
   maxSteer: 20
   lapText: {fileID: 0}
   checkpoints: 
+  itemSprites:
+  - {fileID: 21300000, guid: 936345f7fc3934efa8119a8700d904c7, type: 3}
+  - {fileID: 21300000, guid: 25887e1e767bc774e9a24997a9343056, type: 3}
+  - {fileID: 21300000, guid: 54af60d343d3e3b458ad7e97dd60dd04, type: 3}
+  - {fileID: 21300000, guid: bfdd17ce79c7a8d4e93f0f3ce303ea70, type: 3}
 --- !u!114 &6091362581222941943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1373,13 +1378,13 @@ WheelCollider:
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.15
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 0.05
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75

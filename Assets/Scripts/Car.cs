@@ -6,9 +6,18 @@ using Photon.Realtime;
 using System;
 using TMPro;
 using JetBrains.Annotations;
+using UnityEngine.UI;
 
 public class Car : MonoBehaviourPunCallbacks
 {
+    public enum items
+    {
+        Boost,
+        Thunder,
+        Missile,
+        Cannon
+    }
+
     private PhotonView PV;
 
     public Transform centerOfMass;
@@ -30,6 +39,8 @@ public class Car : MonoBehaviourPunCallbacks
     private int lapCount;
     public TMP_Text lapText;
     public bool[] checkpoints;
+
+    public Sprite[] itemSprites;
 
     private void Start()
     {
@@ -102,6 +113,16 @@ public class Car : MonoBehaviourPunCallbacks
             lapCount += 1;
             lapText.text = "LAP: " + lapCount + " / 3";
             checkpoints = new bool[9]; 
+        }
+    }
+
+    public void GetRandomItem()
+    {
+        if (PV.IsMine)
+        {
+            items randItem = (items)UnityEngine.Random.Range(0, 3);
+            Image image = GameObject.Find("Item").GetComponent<Image>();
+            image.sprite = itemSprites[(int)randItem];
         }
     }
 }
