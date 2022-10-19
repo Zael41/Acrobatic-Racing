@@ -12,10 +12,11 @@ public class Car : MonoBehaviourPunCallbacks
 {
     public enum items
     {
+        None,
         Boost,
         Thunder,
-        Missile,
-        Cannon
+        Cannon,
+        Missile
     }
 
     private PhotonView PV;
@@ -41,6 +42,8 @@ public class Car : MonoBehaviourPunCallbacks
     public bool[] checkpoints;
 
     public Sprite[] itemSprites;
+
+    public items currentItem;
 
     private void Start()
     {
@@ -120,9 +123,27 @@ public class Car : MonoBehaviourPunCallbacks
     {
         if (PV.IsMine)
         {
-            items randItem = (items)UnityEngine.Random.Range(0, 3);
+            currentItem = (items)UnityEngine.Random.Range(1, 4);
             Image image = GameObject.Find("Item").GetComponent<Image>();
-            image.sprite = itemSprites[(int)randItem];
+            image.sprite = itemSprites[(int)currentItem - 1];
         }
+    }
+
+    [PunRPC]
+    public void ThunderHit()
+    {
+        //Debug.Log("rayo");
+        this.transform.GetChild(0).localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        motorTorque = 50f;
+        rb.mass = 1000f;
+        StartCoroutine(ThunderEnds());
+    }
+
+    IEnumerator ThunderEnds()
+    {
+        yield return new WaitForSeconds(5f);
+        this.transform.GetChild(0).localScale = Vector3.one;
+        motorTorque = 100f;
+        rb.mass = 500f;
     }
 }

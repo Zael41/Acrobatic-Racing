@@ -2582,6 +2582,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7468372593557377943, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
+      propertyPath: itemSlot
+      value: 
+      objectReference: {fileID: 425924541}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
 --- !u!4 &254101106 stripped
@@ -3447,6 +3451,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7468372593557377943, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
+      propertyPath: itemSlot
+      value: 
+      objectReference: {fileID: 425924541}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
 --- !u!4 &350886771 stripped
@@ -4595,6 +4603,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7468372593557377943, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
+      propertyPath: itemSlot
+      value: 
+      objectReference: {fileID: 425924541}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
 --- !u!4 &552514401 stripped
@@ -6381,6 +6393,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7468372593557377943, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
+      propertyPath: itemSlot
+      value: 
+      objectReference: {fileID: 425924541}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
 --- !u!4 &827971047 stripped
@@ -7782,7 +7798,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29924
+  m_Name: pb_Mesh91344
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9279,6 +9295,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7468372593557377943, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
+      propertyPath: itemSlot
+      value: 
+      objectReference: {fileID: 425924541}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efebddd0b5766bd499be8b63f581de68, type: 3}
 --- !u!4 &1121434343 stripped

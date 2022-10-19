@@ -1038,6 +1038,7 @@ GameObject:
   - component: {fileID: 8944403364047230109}
   - component: {fileID: 5174672091888622931}
   - component: {fileID: 6091362581222941943}
+  - component: {fileID: 8062055750709211217}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -1084,6 +1085,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 8944403364047230109}
   - {fileID: 7143344680262263560}
+  - {fileID: 8112228549704752553}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1150,6 +1152,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 25887e1e767bc774e9a24997a9343056, type: 3}
   - {fileID: 21300000, guid: 54af60d343d3e3b458ad7e97dd60dd04, type: 3}
   - {fileID: 21300000, guid: bfdd17ce79c7a8d4e93f0f3ce303ea70, type: 3}
+  currentItem: 0
 --- !u!114 &6091362581222941943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,6 +1165,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7228c03cc4b4e41a9ac9aaa56b092b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8062055750709211217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4729737495216228186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec608550a2376d458fe7b4267d280b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSlot: {fileID: 0}
+  car: {fileID: 0}
+  rb: {fileID: 0}
+  isBoosting: 0
+  views: []
 --- !u!1 &4729737495389277108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1286,7 @@ GameObject:
   - component: {fileID: 4729737495499727139}
   - component: {fileID: 6666959818334115616}
   - component: {fileID: 7143344680262263560}
+  - component: {fileID: 8112228549704752553}
   m_Layer: 0
   m_Name: Taxi
   m_TagString: Player
@@ -1328,6 +1349,39 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &8112228549704752553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4729737495499727136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 0
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &4729737495686652162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1872,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9205975586733714799}
-  m_LocalRotation: {x: 0.06883049, y: 0.70374876, z: -0.06883049, w: 0.7037488}
+  m_LocalRotation: {x: 0.06883049, y: 0.70374876, z: -0.06883048, w: 0.7037488}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

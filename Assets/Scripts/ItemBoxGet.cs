@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemBoxGet : MonoBehaviour
 {
+    public GameObject itemSlot;
     public Car car;
     public bool itemRespawning;
 
@@ -14,9 +15,13 @@ public class ItemBoxGet : MonoBehaviour
             //GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
             //gameController.FinishLap();
             car = other.gameObject.GetComponentInParent<Car>();
-            //Car.items randItem = (Car.items)Random.Range(0, 3);
-            car.GetRandomItem();
-            StartCoroutine(itemCooldown());
+            if (car.photonView.IsMine)
+            {
+                //Car.items randItem = (Car.items)Random.Range(0, 3);
+                itemSlot.SetActive(true);
+                car.GetRandomItem();
+                StartCoroutine(itemCooldown());
+            }
         }
     }
 
