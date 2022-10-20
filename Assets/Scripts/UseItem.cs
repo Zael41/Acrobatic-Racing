@@ -16,6 +16,8 @@ public class UseItem : MonoBehaviour
 
     public PhotonView[] views;
 
+    private Coroutine endBooster;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,12 +40,7 @@ public class UseItem : MonoBehaviour
             {
                 if (car.currentItem == Car.items.Boost)
                 {
-                    boostForce = transform.GetChild(0).forward * 25f;
-                    Debug.Log(boostForce);
-                    //this.GetComponentInChildren<Rigidbody>().AddForce(boostForce);
-                    //rb.velocity = boostForce;
-                    isBoosting = true;
-                    StartCoroutine(EndBoost());
+                    Booster();
                 }
                 else if (car.currentItem == Car.items.Cannon)
                 {
@@ -73,10 +70,33 @@ public class UseItem : MonoBehaviour
         }
     }
 
-    IEnumerator EndBoost()
+    IEnumerator EndBoost(float time)
     {
         yield return new WaitForSeconds(2f);
         isBoosting = false;
         rb.velocity = transform.GetChild(0).forward * 12f;
+
+        /*var instruction = new WaitForEndOfFrame();
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return instruction;
+        }
+        isBoosting = false;
+        rb.velocity = transform.GetChild(0).forward * 12f;*/
+    }
+
+    public void Booster()
+    {
+        if (car.photonView.IsMine)
+        {
+            if (endBooster != null) StopCoroutine(endBooster);
+            boostForce = transform.GetChild(0).forward * 25f;
+            Debug.Log(boostForce);
+            //this.GetComponentInChildren<Rigidbody>().AddForce(boostForce);
+            //rb.velocity = boostForce;
+            isBoosting = true;
+            endBooster = StartCoroutine(EndBoost(2));
+        }
     }
 }
