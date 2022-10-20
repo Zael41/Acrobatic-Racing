@@ -36,6 +36,10 @@ public class Car : MonoBehaviourPunCallbacks
     public float motorTorque = 100f;
     public float maxSteer = 20f;
     private Rigidbody rb;
+    private Wheel[] wheels;
+
+    public float ThrottleInput { get; private set; }
+    public float SteerInput { get; private set; }
 
     private int lapCount;
     public TMP_Text lapText;
@@ -47,6 +51,7 @@ public class Car : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        wheels = GetComponentsInChildren<Wheel>();
         rb = GetComponentInChildren<Rigidbody>();
         rb.centerOfMass = centerOfMass.localPosition;
         Cursor.lockState = CursorLockMode.Locked;
@@ -56,49 +61,17 @@ public class Car : MonoBehaviourPunCallbacks
         lapText = GameObject.Find("LapText").GetComponent<TMP_Text>();
     }
 
-    private void FixedUpdate()
-    {
-        MoveCar();
-    }
-
-    public void MoveCar()
-    {
-        if (PV.IsMine)
-        {
-            wheelColliderLeftBack.motorTorque = Input.GetAxis("Vertical") * motorTorque;
-            wheelColliderRightBack.motorTorque = Input.GetAxis("Vertical") * motorTorque;
-            wheelColliderLeftFront.steerAngle = Input.GetAxis("Horizontal") * maxSteer;
-            wheelColliderRightFront.steerAngle = Input.GetAxis("Horizontal") * maxSteer;
-        }
-    }
-
     private void Update()
     {
-        GetWheelPosition();
-    }
-
-    public void GetWheelPosition()
-    {
         if (PV.IsMine)
         {
-            Vector3 position = Vector3.zero;
-            Quaternion rotation = Quaternion.identity;
-
-            wheelColliderLeftFront.GetWorldPose(out position, out rotation);
-            wheelLeftFront.position = position;
-            wheelLeftFront.rotation = rotation;
-
-            wheelColliderRightFront.GetWorldPose(out position, out rotation);
-            wheelRightFront.position = position;
-            wheelRightFront.rotation = rotation;
-
-            wheelColliderLeftBack.GetWorldPose(out position, out rotation);
-            wheelLeftBack.position = position;
-            wheelLeftBack.rotation = rotation;
-
-            wheelColliderRightBack.GetWorldPose(out position, out rotation);
-            wheelRightBack.position = position;
-            wheelRightBack.rotation = rotation;
+            SteerInput = Input.GetAxis("Horizontal");
+            ThrottleInput = Input.GetAxis("Vertical");
+            foreach (Wheel w in wheels)
+            {
+                w.SteerAngle = SteerInput * maxSteer;
+                w.Torque = ThrottleInput * motorTorque;
+            }
         }
     }
 
@@ -146,4 +119,14 @@ public class Car : MonoBehaviourPunCallbacks
         motorTorque = 100f;
         rb.mass = 500f;
     }
+
+    /*public float ThrottleInput { get; private set; }
+    public float SteerInput { get; private set; }
+
+    void Update() 
+    {
+        SteerInput = Input.GetAxis("Horizontal");
+        ThrottleInput = Input.GetAxis("Vertical");
+    }
+    */
 }
