@@ -61,6 +61,8 @@ public class UseItem : MonoBehaviour
                         }
                     }
                 }
+                car.currentItem = Car.items.None;
+                itemSlot.SetActive(false);
             }
             if (isBoosting)
             {
