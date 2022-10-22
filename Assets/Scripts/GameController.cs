@@ -55,11 +55,12 @@ public class GameController : MonoBehaviourPunCallbacks
         Debug.Log(nextPosition);
         jugadorGO = PhotonNetwork.Instantiate("Player2", spawnPositions[nextPosition].position, Quaternion.identity, 0);
         nextPosition++;
-        if (jugador == 2)
+        if (jugador == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
             PhotonView timerPV = GameObject.Find("Timer").GetComponent<PhotonView>();
             timerPV.RPC("BeginTimer", RpcTarget.All);
         }
+        Debug.Log("Jugadores maximos =" + PhotonNetwork.CurrentRoom.MaxPlayers);
     }
 
     /*public override void OnPlayerEnteredRoom(Player newPlayer)

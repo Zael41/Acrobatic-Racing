@@ -7,12 +7,14 @@ using Photon.Realtime;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public int roomNumber;
+    public byte playerCount = 2;
+    public string levelName = "DrivingTest";
 
     public void CrearRoom()
     {
         Debug.Log("Creando sala nueva");
 
-        PhotonNetwork.JoinOrCreateRoom("Sala no." + roomNumber, new RoomOptions() { MaxPlayers = 2 }, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom("Sala no." + roomNumber, new RoomOptions() { MaxPlayers = playerCount }, TypedLobby.Default);
 
         Debug.Log("Sala creada");
     }
@@ -39,6 +41,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("DrivingTest");
+        PhotonNetwork.LoadLevel(levelName);
     }
 }
