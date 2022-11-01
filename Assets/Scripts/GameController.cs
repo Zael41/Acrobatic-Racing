@@ -24,6 +24,8 @@ public class GameController : MonoBehaviourPunCallbacks
     public Transform[] spawnPositions;
     public int nextPosition;
 
+    public int[] checkpointCount = new int[4] { 9, 8, 8, 8};
+
     void Awake()
     {
         if (instance == null)

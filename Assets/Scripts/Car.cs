@@ -7,6 +7,7 @@ using System;
 using TMPro;
 using JetBrains.Annotations;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Car : MonoBehaviourPunCallbacks
 {
@@ -57,7 +58,8 @@ public class Car : MonoBehaviourPunCallbacks
         Cursor.lockState = CursorLockMode.Locked;
         PV = GetComponent<PhotonView>();
         lapCount = 0;
-        checkpoints = new bool[9]; 
+        checkpoints = new bool[GameController.instance.checkpointCount[SceneManager.GetActiveScene().buildIndex - 1]];
+        Debug.Log(checkpoints.Length);
         lapText = GameObject.Find("LapText").GetComponent<TMP_Text>();
     }
 
@@ -88,7 +90,7 @@ public class Car : MonoBehaviourPunCallbacks
             }
             lapCount += 1;
             lapText.text = "LAP: " + lapCount + " / 3";
-            checkpoints = new bool[9]; 
+            checkpoints = new bool[GameController.instance.checkpointCount[SceneManager.GetActiveScene().buildIndex - 1]]; 
         }
     }
 
