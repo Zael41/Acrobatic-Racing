@@ -24,7 +24,7 @@ public class GameController : MonoBehaviourPunCallbacks
     public Transform[] spawnPositions;
     public int nextPosition;
 
-    public int[] checkpointCount = new int[4] { 9, 8, 9, 8};
+    public int[] checkpointCount = new int[4] { 9, 8, 9, 9};
 
     void Awake()
     {
@@ -55,7 +55,7 @@ public class GameController : MonoBehaviourPunCallbacks
         Vector3 spawnPoint = new Vector3(25f, 20f, 0f);
         nextPosition = jugador - 1;
         Debug.Log(nextPosition);
-        jugadorGO = PhotonNetwork.Instantiate("Player2", spawnPositions[nextPosition].position, Quaternion.identity, 0);
+        jugadorGO = PhotonNetwork.Instantiate("Player2", spawnPositions[nextPosition].position, spawnPositions[nextPosition].rotation, 0);
         nextPosition++;
         if (jugador == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
