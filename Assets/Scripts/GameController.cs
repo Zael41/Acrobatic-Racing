@@ -59,8 +59,12 @@ public class GameController : MonoBehaviourPunCallbacks
         nextPosition++;
         if (jugador == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
-            PhotonView timerPV = GameObject.Find("Timer").GetComponent<PhotonView>();
-            timerPV.RPC("BeginTimer", RpcTarget.All);
+            //PhotonView timerPV = GameObject.Find("Timer").GetComponent<PhotonView>();
+            //timerPV.RPC("BeginTimer", RpcTarget.All);
+            
+            PhotonView timerPV = GameObject.Find("Countdown").GetComponent<PhotonView>();
+            timerPV.RPC("WaitingText", RpcTarget.All);
+            timerPV.RPC("BeginCountdown", RpcTarget.All);
         }
         Debug.Log("Jugadores maximos =" + PhotonNetwork.CurrentRoom.MaxPlayers);
     }

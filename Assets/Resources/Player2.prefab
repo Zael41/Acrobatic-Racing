@@ -1152,6 +1152,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 54af60d343d3e3b458ad7e97dd60dd04, type: 3}
   - {fileID: 21300000, guid: bfdd17ce79c7a8d4e93f0f3ce303ea70, type: 3}
   currentItem: 0
+  disabled: 1
 --- !u!114 &6091362581222941943
 MonoBehaviour:
   m_ObjectHideFlags: 0

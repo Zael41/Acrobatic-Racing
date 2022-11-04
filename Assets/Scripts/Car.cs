@@ -50,6 +50,8 @@ public class Car : MonoBehaviourPunCallbacks
 
     public items currentItem;
 
+    public bool disabled;
+
     private void Start()
     {
         wheels = GetComponentsInChildren<Wheel>();
@@ -65,7 +67,7 @@ public class Car : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (PV.IsMine)
+        if (PV.IsMine && !disabled)
         {
             SteerInput = Input.GetAxis("Horizontal");
             ThrottleInput = Input.GetAxis("Vertical");
@@ -122,13 +124,12 @@ public class Car : MonoBehaviourPunCallbacks
         rb.mass = 500f;
     }
 
-    /*public float ThrottleInput { get; private set; }
-    public float SteerInput { get; private set; }
-
-    void Update() 
+    [PunRPC]
+    public void ChangeDisable()
     {
-        SteerInput = Input.GetAxis("Horizontal");
-        ThrottleInput = Input.GetAxis("Vertical");
+        if (PV.IsMine)
+        {
+            disabled = false;
+        }
     }
-    */
 }
