@@ -8,6 +8,10 @@ using TMPro;
 using JetBrains.Annotations;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cinemachine;
+using System.Runtime.ConstrainedExecution;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Photon.Pun.Demo.Asteroids;
 
 public class Car : MonoBehaviourPunCallbacks
 {
@@ -52,6 +56,8 @@ public class Car : MonoBehaviourPunCallbacks
 
     public bool disabled;
 
+    //public bool finishedRace;
+
     private void Start()
     {
         wheels = GetComponentsInChildren<Wheel>();
@@ -92,7 +98,35 @@ public class Car : MonoBehaviourPunCallbacks
             }
             lapCount += 1;
             lapText.text = "LAP: " + lapCount + " / 3";
-            checkpoints = new bool[GameController.instance.checkpointCount[SceneManager.GetActiveScene().buildIndex - 1]]; 
+            checkpoints = new bool[GameController.instance.checkpointCount[SceneManager.GetActiveScene().buildIndex - 1]];
+            if (lapCount == 3)
+            {
+                ChangeDisable();
+                PV.RPC("DeactivateCar", RpcTarget.All, PV.ViewID);
+                CinemachineFreeLook CMFL = GetComponentInChildren<CinemachineFreeLook>();
+                Transform focusPoint = GameObject.Find("EndCameraPoint").transform;
+                CMFL.Follow = focusPoint;
+                CMFL.LookAt = focusPoint;
+                GameController.instance.waitingText.SetActive(true);
+                GameController.instance.speedMeter.SetActive(false);
+                GameController.instance.itemSlot.SetActive(false);
+                TimerUI timerPV = GameObject.Find("Timer").GetComponent<TimerUI>();
+                timerPV.EndTimer();
+                int finishedCount = 0;
+                PhotonView[] views = GameObject.FindObjectsOfType<PhotonView>();
+                foreach (PhotonView v in views)
+                {
+                    if (v.gameObject.tag == ("Player") && v.GetComponentInChildren<Rigidbody>() == null)
+                    {
+                        finishedCount++;
+                    }
+                }
+                if (finishedCount == PhotonNetwork.PlayerList.Length)
+                {
+                    Debug.Log("LOCURA MAXIMA TOTS LOS JUGADORS HAN ACABAT LA CARRERA");
+                    PV.RPC("CloseGame", RpcTarget.All);
+                }
+            }
         }
     }
 
@@ -129,7 +163,22 @@ public class Car : MonoBehaviourPunCallbacks
     {
         if (PV.IsMine)
         {
-            disabled = false;
+            disabled = !disabled;
         }
+    }
+
+    [PunRPC]
+    public void DeactivateCar(int id)
+    {
+        if (PV.ViewID == id)
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    [PunRPC]
+    public void CloseGame()
+    {
+        Application.Quit();
     }
 }

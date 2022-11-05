@@ -45,6 +45,7 @@ public class Countdown : MonoBehaviourPunCallbacks
             if (v.gameObject.tag == ("Player"))
             {
                 v.RPC("ChangeDisable", RpcTarget.All);
+                break;
             }
         }
         PhotonView timerPV = GameObject.Find("Timer").GetComponent<PhotonView>();

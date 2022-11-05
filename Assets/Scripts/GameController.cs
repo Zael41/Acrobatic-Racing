@@ -6,6 +6,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class GameController : MonoBehaviourPunCallbacks
 {
@@ -25,6 +26,12 @@ public class GameController : MonoBehaviourPunCallbacks
     public int nextPosition;
 
     public int[] checkpointCount = new int[4] { 9, 8, 9, 9};
+
+    public GameObject waitingText;
+    public GameObject speedMeter;
+    public GameObject itemSlot;
+
+    //public bool finishedRace;
 
     void Awake()
     {
@@ -57,44 +64,11 @@ public class GameController : MonoBehaviourPunCallbacks
         jugadorGO = PhotonNetwork.Instantiate("Player2", spawnPositions[nextPosition].position, spawnPositions[nextPosition].rotation, 0);
         nextPosition++;
         if (jugador == PhotonNetwork.CurrentRoom.MaxPlayers)
-        {
-            //PhotonView timerPV = GameObject.Find("Timer").GetComponent<PhotonView>();
-            //timerPV.RPC("BeginTimer", RpcTarget.All);
-            
+        {            
             PhotonView timerPV = GameObject.Find("Countdown").GetComponent<PhotonView>();
             timerPV.RPC("WaitingText", RpcTarget.All);
             timerPV.RPC("BeginCountdown", RpcTarget.All);
         }
         Debug.Log("Jugadores maximos =" + PhotonNetwork.CurrentRoom.MaxPlayers);
-    }
-
-    /*public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        jugadores = PhotonNetwork.PlayerList;
-
-        jugador = jugadores.Length;
-
-        Debug.Log("Se unio el jugador" + jugador);
-
-        PhotonNetwork.NickName = jugador.ToString();
-    }
-
-    public override void OnJoinedRoom()
-    {
-        jugadores = PhotonNetwork.PlayerList;
-
-        jugador = jugadores.Length;
-
-        Debug.Log("Se unio el jugador" + jugador);
-
-        PhotonNetwork.NickName = jugador.ToString();
-
-        jugadorGO = PhotonNetwork.Instantiate("Player1", transform.position, Quaternion.identity, 0);
-    }*/
-
-    public void FinishLap()
-    {
-        lapCount += 1;
-        lapText.text = "LAP: " + lapCount + " / 3";
     }
 }

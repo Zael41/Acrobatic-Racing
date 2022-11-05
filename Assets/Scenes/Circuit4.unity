@@ -7178,6 +7178,9 @@ MonoBehaviour:
   - {fileID: 603262257}
   nextPosition: 0
   checkpointCount: 09000000080000000900000009000000
+  waitingText: {fileID: 1493077377}
+  speedMeter: {fileID: 1900646853}
+  itemSlot: {fileID: 425924541}
 --- !u!4 &1264449548
 Transform:
   m_ObjectHideFlags: 0
@@ -12315,6 +12318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeCounter: {fileID: 750520777}
+  elapsedTime: 0
   initialTime: 9
 --- !u!1 &2058386920
 GameObject:

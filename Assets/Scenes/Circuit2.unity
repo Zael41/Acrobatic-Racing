@@ -36437,6 +36437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeCounter: {fileID: 1804935374}
+  elapsedTime: 0
   initialTime: 9
 --- !u!1001 &573652180
 PrefabInstance:
@@ -43678,6 +43679,9 @@ MonoBehaviour:
   - {fileID: 603262257}
   nextPosition: 0
   checkpointCount: 09000000080000000800000008000000
+  waitingText: {fileID: 1344394128}
+  speedMeter: {fileID: 1900646853}
+  itemSlot: {fileID: 425924541}
 --- !u!4 &1264449548
 Transform:
   m_ObjectHideFlags: 0
