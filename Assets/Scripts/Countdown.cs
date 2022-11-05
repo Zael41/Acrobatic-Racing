@@ -12,7 +12,7 @@ public class Countdown : MonoBehaviourPunCallbacks
 
     private bool timerGoing;
 
-    private float elapsedTime;
+    public float elapsedTime;
 
     public int initialTime;
 
@@ -22,7 +22,7 @@ public class Countdown : MonoBehaviourPunCallbacks
     void Start()
     {
         timeCounter.text = "";
-        timerGoing = false;
+        //timerGoing = false;
         //PhotonView timerPV = GetComponent<PhotonView>();
         //timerPV.RPC("BeginCountdown", RpcTarget.All);
     }

@@ -54,7 +54,6 @@ public class GameController : MonoBehaviourPunCallbacks
 
         Vector3 spawnPoint = new Vector3(25f, 20f, 0f);
         nextPosition = jugador - 1;
-        Debug.Log(nextPosition);
         jugadorGO = PhotonNetwork.Instantiate("Player2", spawnPositions[nextPosition].position, spawnPositions[nextPosition].rotation, 0);
         nextPosition++;
         if (jugador == PhotonNetwork.CurrentRoom.MaxPlayers)
