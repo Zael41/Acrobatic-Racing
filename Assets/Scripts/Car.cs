@@ -56,6 +56,8 @@ public class Car : MonoBehaviourPunCallbacks
 
     public bool disabled;
 
+    //public int[] orderOfFinishes = new int[4] { 0, 0, 0, 0 };
+
     //public bool finishedRace;
 
     private void Start()
@@ -112,6 +114,7 @@ public class Car : MonoBehaviourPunCallbacks
                 GameController.instance.itemSlot.SetActive(false);
                 TimerUI timerPV = GameObject.Find("Timer").GetComponent<TimerUI>();
                 timerPV.EndTimer();
+                GameObject.Find("GameController").GetComponent<PhotonView>().RPC("ChangeFinishOrder", RpcTarget.All, GameController.instance.jugador);
                 int finishedCount = 0;
                 PhotonView[] views = GameObject.FindObjectsOfType<PhotonView>();
                 foreach (PhotonView v in views)
@@ -124,7 +127,7 @@ public class Car : MonoBehaviourPunCallbacks
                 if (finishedCount == PhotonNetwork.PlayerList.Length)
                 {
                     Debug.Log("LOCURA MAXIMA TOTS LOS JUGADORS HAN ACABAT LA CARRERA");
-                    PV.RPC("CloseGame", RpcTarget.All);
+                    PV.RPC("EndScreen", RpcTarget.All);
                 }
             }
         }
@@ -177,8 +180,35 @@ public class Car : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void CloseGame()
+    public void EndScreen()
     {
-        Application.Quit();
+        GameController.instance.finishPanel.SetActive(true);
+        GameController.instance.waitingText.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        GameObject.Find("FinishTime").GetComponent<TMP_Text>().text = GameObject.Find("Timer").GetComponent<TimerUI>().timeCounter.text;
+        GameObject.Find("Timer").SetActive(false);
+        GameObject.Find("LapCount").SetActive(false);
+        for (int i = 0; i < GameController.instance.orderOfFinishes.Length; i++)
+        {
+            if (GameController.instance.orderOfFinishes[i] == GameController.instance.jugador)
+            {
+                GameObject.Find("FinishPlacement").GetComponent<TMP_Text>().text = (i+1).ToString();
+                return;
+            }
+        }
+        //Application.Quit();
     }
+
+    /*[PunRPC]
+    public void ChangeFinishOrder(int playerNumber)
+    {
+        for (int i = 0; i < orderOfFinishes.Length; i++)
+        {
+            if (orderOfFinishes[i] == 0)
+            {
+                orderOfFinishes[i] = playerNumber;
+                return;
+            }
+        }
+    }*/
 }

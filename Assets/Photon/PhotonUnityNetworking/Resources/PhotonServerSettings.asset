@@ -48,6 +48,8 @@ MonoBehaviour:
   - WaitingText
   - DeactivateCar
   - CloseGame
+  - ChangeFinishOrder
+  - EndScreen
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

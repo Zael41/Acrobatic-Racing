@@ -30,6 +30,9 @@ public class GameController : MonoBehaviourPunCallbacks
     public GameObject waitingText;
     public GameObject speedMeter;
     public GameObject itemSlot;
+    public GameObject finishPanel;
+
+    public int[] orderOfFinishes = new int[4] { 0, 0, 0, 0 };
 
     //public bool finishedRace;
 
@@ -70,5 +73,23 @@ public class GameController : MonoBehaviourPunCallbacks
             timerPV.RPC("BeginCountdown", RpcTarget.All);
         }
         Debug.Log("Jugadores maximos =" + PhotonNetwork.CurrentRoom.MaxPlayers);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    [PunRPC]
+    public void ChangeFinishOrder(int playerNumber)
+    {
+        for (int i = 0; i < orderOfFinishes.Length; i++)
+        {
+            if (orderOfFinishes[i] == 0)
+            {
+                orderOfFinishes[i] = playerNumber;
+                return;
+            }
+        }
     }
 }
