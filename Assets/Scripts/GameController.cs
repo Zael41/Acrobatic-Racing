@@ -19,7 +19,7 @@ public class GameController : MonoBehaviourPunCallbacks
     public GameObject jugadorGO;
     public GameObject cameraGO;
 
-    private int lapCount;
+    //private int lapCount;
     public TMP_Text lapText;
 
     public Transform[] spawnPositions;
@@ -34,6 +34,8 @@ public class GameController : MonoBehaviourPunCallbacks
 
     public int[] orderOfFinishes = new int[4] { 0, 0, 0, 0 };
 
+    public Color[] playerColors;
+
     //public bool finishedRace;
 
     void Awake()
@@ -43,7 +45,7 @@ public class GameController : MonoBehaviourPunCallbacks
             instance = this;
             DontDestroyOnLoad(gameObject);
             QualitySettings.vSyncCount = 1;
-            lapCount = 0;
+            //lapCount = 0;
             //nextPosition = 0;
         }
         else
@@ -58,21 +60,19 @@ public class GameController : MonoBehaviourPunCallbacks
 
         jugador = jugadores.Length;
 
-        Debug.Log("Se unio el jugador" + jugador);
-
         PhotonNetwork.NickName = jugador.ToString();
 
         Vector3 spawnPoint = new Vector3(25f, 20f, 0f);
         nextPosition = jugador - 1;
-        jugadorGO = PhotonNetwork.Instantiate("Player2", spawnPositions[nextPosition].position, spawnPositions[nextPosition].rotation, 0);
+        jugadorGO = PhotonNetwork.Instantiate("PlayerCar", spawnPositions[nextPosition].position, spawnPositions[nextPosition].rotation, 0);
         nextPosition++;
+        this.photonView.RPC("ChangeColor", RpcTarget.All, jugador, jugadorGO.GetComponent<PhotonView>().ViewID);
         if (jugador == PhotonNetwork.CurrentRoom.MaxPlayers)
         {            
             PhotonView timerPV = GameObject.Find("Countdown").GetComponent<PhotonView>();
             timerPV.RPC("WaitingText", RpcTarget.All);
             timerPV.RPC("BeginCountdown", RpcTarget.All);
         }
-        Debug.Log("Jugadores maximos =" + PhotonNetwork.CurrentRoom.MaxPlayers);
     }
 
     public void QuitGame()
@@ -89,6 +89,25 @@ public class GameController : MonoBehaviourPunCallbacks
             {
                 orderOfFinishes[i] = playerNumber;
                 return;
+            }
+        }
+    }
+
+    [PunRPC]
+    public void ChangeColor(int playerNumber, int playerID)
+    {
+        foreach (Player p in PhotonNetwork.PlayerList)
+        {
+            if (p.ActorNumber == playerNumber)
+            {
+                PhotonView[] views = GameObject.FindObjectsOfType<PhotonView>();
+                foreach (PhotonView v in views)
+                {
+                    if (v.ViewID == playerID)
+                    {
+                        v.gameObject.GetComponentInChildren<Renderer>().material.color = playerColors[playerNumber - 1];
+                    }
+                }
             }
         }
     }

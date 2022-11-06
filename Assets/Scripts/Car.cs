@@ -69,7 +69,6 @@ public class Car : MonoBehaviourPunCallbacks
         PV = GetComponent<PhotonView>();
         lapCount = 0;
         checkpoints = new bool[GameController.instance.checkpointCount[SceneManager.GetActiveScene().buildIndex - 1]];
-        Debug.Log(checkpoints.Length);
         lapText = GameObject.Find("LapText").GetComponent<TMP_Text>();
     }
 
@@ -126,7 +125,6 @@ public class Car : MonoBehaviourPunCallbacks
                 }
                 if (finishedCount == PhotonNetwork.PlayerList.Length)
                 {
-                    Debug.Log("LOCURA MAXIMA TOTS LOS JUGADORS HAN ACABAT LA CARRERA");
                     PV.RPC("EndScreen", RpcTarget.All);
                 }
             }
@@ -198,17 +196,4 @@ public class Car : MonoBehaviourPunCallbacks
         }
         //Application.Quit();
     }
-
-    /*[PunRPC]
-    public void ChangeFinishOrder(int playerNumber)
-    {
-        for (int i = 0; i < orderOfFinishes.Length; i++)
-        {
-            if (orderOfFinishes[i] == 0)
-            {
-                orderOfFinishes[i] = playerNumber;
-                return;
-            }
-        }
-    }*/
 }

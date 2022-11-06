@@ -77,15 +77,6 @@ public class UseItem : MonoBehaviour
         yield return new WaitForSeconds(2f);
         isBoosting = false;
         rb.velocity = transform.GetChild(0).forward * 12f;
-
-        /*var instruction = new WaitForEndOfFrame();
-        while (time > 0)
-        {
-            time -= Time.deltaTime;
-            yield return instruction;
-        }
-        isBoosting = false;
-        rb.velocity = transform.GetChild(0).forward * 12f;*/
     }
 
     public void Booster()
@@ -94,9 +85,6 @@ public class UseItem : MonoBehaviour
         {
             if (endBooster != null) StopCoroutine(endBooster);
             boostForce = transform.GetChild(0).forward * 25f;
-            Debug.Log(boostForce);
-            //this.GetComponentInChildren<Rigidbody>().AddForce(boostForce);
-            //rb.velocity = boostForce;
             isBoosting = true;
             endBooster = StartCoroutine(EndBoost(2));
         }

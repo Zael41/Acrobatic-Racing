@@ -10,8 +10,6 @@ public class LapCountCollider : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
-            //gameController.FinishLap();
             car = other.gameObject.GetComponentInParent<Car>();
             car.FinishLap();
         }

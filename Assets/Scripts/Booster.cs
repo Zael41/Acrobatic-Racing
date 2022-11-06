@@ -20,7 +20,6 @@ public class Booster : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("marselo");
             if (other.gameObject.GetComponentInParent<PhotonView>().IsMine)
             {
                 other.gameObject.GetComponentInParent<UseItem>().Booster();
